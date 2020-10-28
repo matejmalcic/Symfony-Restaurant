@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Product index{% endblock %}
+
+{% block body %}
+    {% if is_granted('ROLE_ADMIN') %}
+        <a class="btn" href="{{ path('product_new') }}">Create new</a>
+    {% endif %}
+    {% for category in categories %}
+        <h1>{{ category.name }}</h1>
+        {% include 'crud/product/cards.html.twig' %}
+    {% endfor %}
+{% endblock %}

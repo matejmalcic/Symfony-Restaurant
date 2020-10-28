@@ -1,0 +1,21 @@
+body {
+    background-image: url('https://restaurantindia.s3.ap-south-1.amazonaws.com/s3fs-public/content11850.jpg');
+    background-size: cover;
+    background-attachment: scroll;
+}
+
+.container {
+    padding: 25px;
+    background: gainsboro;
+    min-height: 650px;
+    opacity: 0.83;"
+}
+
+.btn {
+    background-color: #9f5811;
+    color: white;
+}
+
+.fas {
+    color: #9f5811;
+}
