@@ -2,7 +2,10 @@
 
 namespace App\Security;
 
+use App\Controller\CartController;
+use App\Controller\Crud\UserController;
 use App\Entity\User;
+use App\Service\CreateCart;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -77,6 +80,7 @@ class AppAuthenticator extends AbstractFormLoginAuthenticator implements Passwor
             throw new CustomUserMessageAuthenticationException('Email could not be found.');
         }
 
+
         return $user;
     }
 
@@ -95,13 +99,15 @@ class AppAuthenticator extends AbstractFormLoginAuthenticator implements Passwor
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $providerKey)
     {
+        if($token->getUser()->getRoles() === ['ROLE_USER'] && !$token->getUser()->getCart()) {
+            (new \App\Controller\CartController)->createCart($token->getUser(), $this->entityManager);
+        }
+
         if ($targetPath = $this->getTargetPath($request->getSession(), $providerKey)) {
             return new RedirectResponse($targetPath);
         }
-//$this->session->start();
-        // For example : return new RedirectResponse($this->urlGenerator->generate('some_route'));
+
         return new RedirectResponse($this->urlGenerator->generate('home'));
-        //throw new \Exception('provide a valid redirect inside '.__FILE__);
     }
 
     protected function getLoginUrl()

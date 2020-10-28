@@ -1,0 +1,7 @@
+<div class="row">
+    {% for product in products %}
+        {% if category.id == product.category.id %}
+            {% include 'crud/product/card.html.twig' %}
+        {% endif %}
+    {% endfor %}
+</div>

@@ -2,6 +2,8 @@
 
 namespace App\Controller\Crud;
 
+use App\Entity\Cart;
+use App\Entity\CartProduct;
 use App\Entity\Product;
 use App\Form\ProductType;
 use App\Repository\CategoryRepository;
@@ -12,7 +14,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Doctrine\ORM\Tools\Pagination\Paginator;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
  * @Route("/crud/product")
@@ -31,6 +33,7 @@ class ProductController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_ADMIN", statusCode=404, message="You don't have premmision for this!")
      * @Route("/new", name="product_new", methods={"GET","POST"})
      */
     public function new(Request $request, UploaderHelper $uploaderHelper): Response
@@ -71,16 +74,7 @@ class ProductController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="product_show", methods={"GET"})
-     */
-    public function show(Product $product): Response
-    {
-        return $this->render('crud/product/show.html.twig', [
-            'product' => $product,
-        ]);
-    }
-
-    /**
+     * @IsGranted("ROLE_ADMIN", statusCode=404, message="You don't have premmision for this!")
      * @Route("/{id}/edit", name="product_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Product $product): Response
@@ -101,6 +95,7 @@ class ProductController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_ADMIN", statusCode=404, message="You don't have premmision for this!")
      * @Route("/{id}", name="product_delete", methods={"DELETE"})
      */
     public function delete(Request $request, Product $product): Response

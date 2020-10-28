@@ -18,12 +18,12 @@
             <li class="nav-item active">
                 <a class="nav-link" href="{{ path('home') }}">Home</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('product_index') }}">Products</a>
+            </li>
             {% if is_granted('ROLE_ADMIN') %}
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('user_index') }}">Users</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('product_index') }}">Products</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('category_index') }}">Category</a>
@@ -33,6 +33,10 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('order_index') }}">Orders</a>
+                </li>
+            {% elseif app.user and not is_granted('ROLE_EMPLOYEE') %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('cart_index') }}"><i class="fas fa-shopping-cart fa-2x"></i></a>
                 </li>
             {% endif %}
         </ul>
@@ -65,6 +69,7 @@
     {% endfor %}
     {% block body %}{% endblock %}
 </div>
+<script src="https://kit.fontawesome.com/3b8c308efb.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
         integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
         crossorigin="anonymous"></script>

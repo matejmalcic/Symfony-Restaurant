@@ -1,9 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}User index{% endblock %}
+{% block title %}User's{% endblock %}
 
 {% block body %}
-    <h1>User index</h1>
+
+    <a class="btn" href="{{ path('user_new') }}">Create new</a>
 
     <table class="table">
         <thead>
@@ -13,7 +14,6 @@
                 <th>Roles</th>
                 <th>First_name</th>
                 <th>Last_name</th>
-                <th>Session</th>
                 <th>Points</th>
                 <th>actions</th>
             </tr>
@@ -26,11 +26,10 @@
                 <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
                 <td>{{ user.firstName }}</td>
                 <td>{{ user.lastName }}</td>
-                <td>{{ user.session }}</td>
                 <td>{{ user.points }}</td>
                 <td>
-                    <a class="btn" href="{{ path('user_show', {'id': user.id}) }}">Show</a>
-                    <a class="btn" href="{{ path('user_edit', {'id': user.id}) }}">Edit</a>
+                    <a class="btn" style="display: inline" href="{{ path('user_edit', {'id': user.id}) }}">Edit</a>
+                    {{ include('crud/user/_delete_form.html.twig') }}
                 </td>
             </tr>
         {% else %}
@@ -40,6 +39,4 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <a class="btn" href="{{ path('user_new') }}">Create new</a>
 {% endblock %}

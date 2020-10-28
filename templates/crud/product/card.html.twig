@@ -1,0 +1,46 @@
+<div class="col-sm-3">
+    <div class="card">
+        <img class="card-img-top" alt="Product image"
+             src="{{ asset('/images/' ~ product.image) }}"
+             style="width: 250px; height: 200px;"/>
+
+        <div class="card-body">
+            <h5 class="card-title">{{ product.name }}</h5>
+            <p class="card-text">{{ product.description }}</p>
+            <p> {{ product.price }} €</p>
+            {% if is_granted('ROLE_ADMIN') %}
+                <a class="btn" href="{{ path('product_edit', {'id': product.id}) }}" style="display: inline">Edit</a>
+                {{ include('crud/product/_delete_form.html.twig') }}
+            {% elseif not is_granted('ROLE_EMPLOYEE') %}
+                {{ include('crud/product/add_product_to_cart.html.twig') }}
+
+                {#                <a href="{{ path('add_product_to_cart', {'id': product.id}) }}">#}
+{#                    <i class="fas fa-cart-plus fa-2x"#}
+{#                       data-productId="{{ product.id }}"#}
+{#                       data-productName="{{ product.name }}"#}
+{#                       data-toggle="modal" data-target="#myModal"#}
+{#                    ></i></a>#}
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="question"></h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+
+                <label for="amount">Choose the amount!</label>
+                <input id="amount" type="number" value="1" min="1">
+            </div>
+            <div class="modal-footer">
+                <a id="addLink" class="btn btn-success" >Add</a>
+                <button type="button" class="btn" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
