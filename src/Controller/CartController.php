@@ -13,9 +13,11 @@ use App\Repository\ProductRepository;
 use App\Repository\StatusRepository;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
+use mysql_xdevapi\Session;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -28,9 +30,10 @@ class CartController extends AbstractController
      * @param CartProductRepository $cartProductRepository
      * @return Response
      */
-    public function index(CartProductRepository $cartProductRepository): Response
+    public function index(CartProductRepository $cartProductRepository, CartRepository $cartRepository, SessionInterface $session): Response
     {
-        $cart = $this->getUser()->getCart();
+        $session->start(); //why not working without this
+        $cart = $cartRepository->findOneBy(['session' => $session->getId()]);
         $products = $cartProductRepository->findByExampleField($cart->getId());
 
         return $this->render('cart/index.html.twig', [
@@ -44,11 +47,11 @@ class CartController extends AbstractController
      * @param EntityManagerInterface $entityManager
      * @param $user
      */
-    public function createCart( User $user, EntityManagerInterface $entityManager): Void
+    public function createCart(EntityManagerInterface $entityManager, SessionInterface $session): Void
     {
         $cart = new Cart();
-        $cart->setUser($user);
         $cart->setPrice(0);
+        $cart->setSession($session->getId());
         $entityManager->persist($cart);
         $entityManager->flush();
     }
@@ -58,19 +61,20 @@ class CartController extends AbstractController
      * @param EntityManagerInterface $entityManager
      * @param $user
      */
-    public function makeOrder(Cart $cart, StatusRepository $statusRepository, EntityManagerInterface $entityManager): Response
+    public function makeOrder(Cart $cart, StatusRepository $statusRepository, EntityManagerInterface $entityManager, SessionInterface $session): Response
     {
         if($cart->getPrice() !== 0){
             $status = $statusRepository->getFirst();
             $order = new Order();
-            $order->setUser($cart->getUser());
+            $order->setUser($session->get('user'));
             $order->setCart($cart);
             $order->setStatus($status[0]);
             $order->setPrice($cart->getPrice());
+            $entityManager->getCache();
             $entityManager->persist($order);
             $entityManager->flush();
             $this->addFlash('success', 'Your order is received!');
-            $this->createCart($this->getUser(), $entityManager);
+            $this->createCart($entityManager, $session);
         }else {
             $this->addFlash('success', 'Your cart is empty!');
         }
@@ -86,9 +90,9 @@ class CartController extends AbstractController
      * @param Product $product
      * @return Response
      */
-    public function addProductToCart(Request $request, CartRepository $cartRepository, Product $product, CartProductRepository $cartProductRepository): Response
+    public function addProductToCart(Request $request, CartRepository $cartRepository, Product $product, CartProductRepository $cartProductRepository, SessionInterface $session): Response
     {
-        $cart = $cartRepository->findOneBy(['user' => $this->getUser()]);
+        $cart = $cartRepository->findOneBy(['session' => $session->getId()]);
         $amount = $request->get('amount');
 
         $cartProduct = $cartProductRepository->findOneBy([

@@ -102,8 +102,8 @@ class AppAuthenticator extends AbstractFormLoginAuthenticator implements Passwor
         $this->session->start();
         $this->session->set('user', $token->getUser());
 
-        if($token->getUser()->getRoles() === ['ROLE_USER'] && !$token->getUser()->getCart()) {
-            (new \App\Controller\CartController)->createCart($token->getUser(), $this->entityManager);
+        if($token->getUser()->getRoles() === ['ROLE_USER']) {
+            (new \App\Controller\CartController)->createCart($this->entityManager, $this->session);
         }
 
         if ($targetPath = $this->getTargetPath($request->getSession(), $providerKey)) {
