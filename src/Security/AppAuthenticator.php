@@ -99,6 +99,9 @@ class AppAuthenticator extends AbstractFormLoginAuthenticator implements Passwor
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $providerKey)
     {
+        $this->session->start();
+        $this->session->set('user', $token->getUser());
+
         if($token->getUser()->getRoles() === ['ROLE_USER'] && !$token->getUser()->getCart()) {
             (new \App\Controller\CartController)->createCart($token->getUser(), $this->entityManager);
         }
