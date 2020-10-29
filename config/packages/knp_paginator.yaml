@@ -1,3 +1,0 @@
-knp_paginator:
-  template:
-    pagination: '@KnpPaginator/Pagination/filtration.html.twig'

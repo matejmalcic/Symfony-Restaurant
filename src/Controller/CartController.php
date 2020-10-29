@@ -4,11 +4,13 @@ namespace App\Controller;
 
 use App\Entity\Cart;
 use App\Entity\CartProduct;
+use App\Entity\Order;
 use App\Entity\Product;
 use App\Entity\User;
 use App\Repository\CartProductRepository;
 use App\Repository\CartRepository;
 use App\Repository\ProductRepository;
+use App\Repository\StatusRepository;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -49,6 +51,32 @@ class CartController extends AbstractController
         $cart->setPrice(0);
         $entityManager->persist($cart);
         $entityManager->flush();
+    }
+
+    /**
+     * @Route("/make/order/{cart}", name="make_order", methods={"GET", "POST"})
+     * @param EntityManagerInterface $entityManager
+     * @param $user
+     */
+    public function makeOrder(Cart $cart, StatusRepository $statusRepository, EntityManagerInterface $entityManager): Response
+    {
+        if($cart->getPrice() !== 0){
+            $status = $statusRepository->getFirst();
+            $order = new Order();
+            $order->setUser($cart->getUser());
+            $order->setCart($cart);
+            $order->setStatus($status[0]);
+            $order->setPrice($cart->getPrice());
+            $entityManager->persist($order);
+            $entityManager->flush();
+            $this->addFlash('success', 'Your order is received!');
+            $this->createCart($this->getUser(), $entityManager);
+        }else {
+            $this->addFlash('success', 'Your cart is empty!');
+        }
+
+
+        return $this->redirectToRoute('cart_index');
     }
 
     /**

@@ -44,7 +44,7 @@ class StatusController extends AbstractController
             return $this->redirectToRoute('status_index');
         }
 
-        return $this->render('status/new.html.twig', [
+        return $this->render('crud/status/new.html.twig', [
             'status' => $status,
             'form' => $form->createView(),
         ]);
@@ -74,7 +74,7 @@ class StatusController extends AbstractController
             return $this->redirectToRoute('status_index');
         }
 
-        return $this->render('status/edit.html.twig', [
+        return $this->render('crud/status/edit.html.twig', [
             'status' => $status,
             'form' => $form->createView(),
         ]);

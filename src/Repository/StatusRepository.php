@@ -19,6 +19,15 @@ class StatusRepository extends ServiceEntityRepository
         parent::__construct($registry, Status::class);
     }
 
+    public function getFirst()
+    {
+        return $this->createQueryBuilder('s')
+            ->orderBy('s.number', 'ASC')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
     // /**
     //  * @return Status[] Returns an array of Status objects
     //  */
