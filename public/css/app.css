@@ -4,6 +4,14 @@ body {
     background-attachment: scroll;
 }
 
+thead > tr {
+    background-color: #9f5811;
+}
+
+th, td {
+    border-bottom: 1px solid #ffad33;
+}
+
 .container {
     padding: 25px;
     background: gainsboro;

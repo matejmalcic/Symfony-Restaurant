@@ -21,8 +21,7 @@
         <tbody>
         {% for cart_product in cart_products %}
             <tr>
-                <td><img src="{{ asset('/images/' ~ cart_product.product.image) }}" alt="Product image" style="width: 150px; height: 100px;"/>
-                </td>
+                <td><img src="{{ asset('/images/' ~ cart_product.product.image) }}" alt="Product image" style="width: 150px; height: 100px;"/></td>
                 <td>{{ cart_product.product.name }}</td>
                 <td>{{ cart_product.product.description }}</td>
                 <td>{{ cart_product.amount }}</td>
@@ -33,7 +32,7 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="3">no records found</td>
+                <td colspan="3">Your cart is empty!</td>
             </tr>
         {% endfor %}
         </tbody>

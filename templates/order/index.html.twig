@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Orders{% endblock %}
+
+{% block body %}
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Order number</th>
+            <th>Time ordered</th>
+            <th>Status</th>
+            <th>Price</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for order in orders %}
+            <tr style="background-color: #d9a55a">
+                <td>{{ order.id }}</td>
+                <td>{{ order.orderTime ? order.orderTime|date('H:i:s') : '' }}</td>
+                <td>
+                    {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_EMPLOYEE') %}
+                        <a href="{{ path('status_change', {'order': order.id, 'direction': 'prev'}) }}" class="btn" style="display: inline"><</a>
+                    {% endif %}
+                    <a class="btn" style="display: inline">{{ order.status.name }}</a>
+                    {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_EMPLOYEE') %}
+                        <a href="{{ path('status_change', {'order': order.id, 'direction': 'next'}) }}" class="btn" style="display: inline">></a>
+                    {% endif %}
+                </td>
+                <td>{{ order.price }} €</td>
+                <td>
+                    <a class="orderToClick btn" data-orderId="{{ order.id }}">Products</a>
+                    {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_EMPLOYEE') %}
+                        <a class="btn">Edit</a>
+                        <a class="btn">End</a>
+                    {% endif %}
+
+                </td>
+            </tr>
+        {{ include('order/productsTable.html.twig') }}
+        {% else %}
+            <tr>
+                <td colspan="5">No records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

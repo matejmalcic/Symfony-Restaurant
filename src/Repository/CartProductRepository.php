@@ -27,7 +27,7 @@ class CartProductRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('c')
             ->andWhere('c.cart = :val')
             ->setParameter('val', $value)
-            ->orderBy('c.id', 'ASC')
+            ->orderBy('c.id', 'DESC')
             ->getQuery()
             ->getResult()
         ;

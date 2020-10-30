@@ -1,0 +1,20 @@
+<tr class="order{{ order.id }}" ><td colspan="4">
+    <table class="table">
+        <tbody>
+        {% for product in products %}
+            {% for prod in product %}
+                {% if prod.cart.id == order.cart.id %}
+                    <tr>
+                        <td><img src="{{ asset('/images/' ~ prod.product.image) }}" alt="Product image" style="width: 150px; height: 100px;"/></td>
+                        <td>{{ prod.product.name }}</td>
+                        <td>{{ prod.product.description }}</td>
+                        <td>Amount: {{ prod.amount }}</td>
+                        <td>{{ prod.product.price }} €</td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+        </tbody>
+    </table>
+    </td>
+</tr>

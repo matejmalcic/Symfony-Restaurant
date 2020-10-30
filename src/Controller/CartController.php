@@ -13,7 +13,6 @@ use App\Repository\ProductRepository;
 use App\Repository\StatusRepository;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
-use mysql_xdevapi\Session;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -63,20 +62,20 @@ class CartController extends AbstractController
      */
     public function makeOrder(Cart $cart, StatusRepository $statusRepository, EntityManagerInterface $entityManager, SessionInterface $session): Response
     {
-        if($cart->getPrice() !== 0){
+        if($cart->getPrice() != 0){
             $status = $statusRepository->getFirst();
             $order = new Order();
-            $order->setUser($session->get('user'));
+            $order->setUser($this->getUser());
             $order->setCart($cart);
             $order->setStatus($status[0]);
             $order->setPrice($cart->getPrice());
-            $entityManager->getCache();
             $entityManager->persist($order);
             $entityManager->flush();
             $this->addFlash('success', 'Your order is received!');
+            $session->migrate();
             $this->createCart($entityManager, $session);
         }else {
-            $this->addFlash('success', 'Your cart is empty!');
+            $this->addFlash('warning', 'Your cart is empty!');
         }
 
 
