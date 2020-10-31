@@ -6,6 +6,7 @@ use App\Entity\Cart;
 use App\Entity\CartProduct;
 use App\Entity\Product;
 use App\Form\ProductType;
+use App\Repository\CartRepository;
 use App\Repository\CategoryRepository;
 use App\Repository\ProductRepository;
 use App\Service\UploaderHelper;
@@ -13,6 +14,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
@@ -24,11 +26,13 @@ class ProductController extends AbstractController
     /**
      * @Route("/", name="product_index", methods={"GET"})
      */
-    public function index(ProductRepository $productRepository, CategoryRepository $categoryRepository): Response
+    public function index(ProductRepository $productRepository, CategoryRepository $categoryRepository, CartRepository $cartRepository, SessionInterface $session): Response
     {
+        $session->start();
         return $this->render('crud/product/index.html.twig', [
             'products' => $productRepository->findAll(),
             'categories' => $categoryRepository->findAll(),
+            'cart' => $cartRepository->findOneBy(['session' => $session->getId()])
         ]);
     }
 

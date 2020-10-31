@@ -27,7 +27,7 @@
                         <a href="{{ path('status_change', {'order': order.id, 'direction': 'next'}) }}" class="btn" style="display: inline">></a>
                     {% endif %}
                 </td>
-                <td>{{ order.price }} €</td>
+                <td>{{ order.cart.price }} €</td>
                 <td>
                     <a class="orderToClick btn" data-orderId="{{ order.id }}">Content</a>
                     {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_EMPLOYEE') %}

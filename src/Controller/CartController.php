@@ -83,15 +83,14 @@ class CartController extends AbstractController
     }
 
     /**
-     * @Route("/add/{id}", name="add_product_to_cart", methods={"GET", "POST"})
+     * @Route("/add/{cart}{id}", name="add_product_to_cart", methods={"GET", "POST"})
      * @param Request $request
      * @param CartRepository $cartRepository
      * @param Product $product
      * @return Response
      */
-    public function addProductToCart(Request $request, CartRepository $cartRepository, Product $product, CartProductRepository $cartProductRepository, SessionInterface $session): Response
+    public function addProductToCart(Request $request, Cart $cart, Product $product, CartProductRepository $cartProductRepository, SessionInterface $session): Response
     {
-        $cart = $cartRepository->findOneBy(['session' => $session->getId()]);
         $amount = $request->get('amount');
 
         $cartProduct = $cartProductRepository->findOneBy([
@@ -116,8 +115,13 @@ class CartController extends AbstractController
         $entityManager->persist($cart);
         $entityManager->flush();
 
-        $this->addFlash('success',  $product->getName() .' is now in cart!');
-        return $this->redirectToRoute('product_index');
+        if($request->get('route') === 'order'){
+            $this->addFlash('success',  $product->getName() .' added to order!');
+            return $this->redirectToRoute('order');
+        }else{
+            $this->addFlash('success',  $product->getName() .' added to cart!');
+            return $this->redirectToRoute('product_index');
+        }
     }
 
     /**
@@ -141,6 +145,10 @@ class CartController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('cart_index');
+        if($request->get('route') === 'order'){
+            return $this->redirectToRoute('order');
+        }else{
+            return $this->redirectToRoute('cart_index');
+        }
     }
 }
