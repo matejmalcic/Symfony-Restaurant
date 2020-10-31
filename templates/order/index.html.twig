@@ -29,10 +29,10 @@
                 </td>
                 <td>{{ order.price }} €</td>
                 <td>
-                    <a class="orderToClick btn" data-orderId="{{ order.id }}">Products</a>
+                    <a class="orderToClick btn" data-orderId="{{ order.id }}">Content</a>
                     {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_EMPLOYEE') %}
-                        <a class="btn">Edit</a>
-                        <a class="btn">End</a>
+                        <a class="btn" href="{{ path('order_product_list', {'id': order.id}) }}">Add Meal</a>
+                        <a class="btn" href="{{ path('order_delete', {'order': order.id}) }}">End</a>
                     {% endif %}
 
                 </td>

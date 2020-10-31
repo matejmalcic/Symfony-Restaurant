@@ -16,20 +16,14 @@ class OrderType extends AbstractType
         $builder
             ->add('price', NumberType::class, [
                 'attr' => ['min' => 0]
-            ])
-            ->add('status', EntityType::class, [
-                'class' => Order::class,
-                'choice_label' => function ($order) {
-                    return $order->getStatus();
-                }
-            ])
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
             'data_class' => Order::class,
+            'attr' => ['novalidate' => 'novalidate']
         ]);
     }
 }

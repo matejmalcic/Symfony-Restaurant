@@ -34,9 +34,6 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('status_index') }}">Status</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('order_index') }}">Orders</a>
-                </li>
             {% elseif app.user and not is_granted('ROLE_EMPLOYEE') %}
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('cart_index') }}"><i class="fas fa-shopping-cart fa-2x"></i></a>
