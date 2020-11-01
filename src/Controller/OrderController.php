@@ -87,46 +87,28 @@ class OrderController extends AbstractController
     /**
      * @Route("/delete/{order}", name="order_delete", methods={"GET"})
      */
-    public function delete(Order $order, CartProductRepository $cartProductRepository)
+    public function delete(Order $order, CartProductRepository $cartProductRepository, StatusRepository $statusRepository)
     {
         if(!$this->isGranted('ROLE_ADMIN') && !$this->isGranted('ROLE_EMPLOYEE')){
             $this->denyAccessUnlessGranted($this->getUser());
         }
+        $em = $this->getDoctrine()->getManager();
 
         $cart = $order->getCart();
-        $variabla = $cartProductRepository->findBy(['cart' => $cart]);
+        $products = $cartProductRepository->findBy(['cart' => $cart]);
 
-        $em = $this->getDoctrine()->getManager();
+        $user = $order->getUser();
+        if($order->getStatus() === $statusRepository->getLast()[0]){
+            $user->setPoints($user->getPoints() + $cart->getPrice());
+            $em->persist($user);
+        }
         $em->remove($order);
         $em->remove($cart);
-        foreach ($variabla as $product)
+        foreach ($products as $product)
         {
             $em->remove($product);
         }
         $em->flush();
-
-        return $this->redirectToRoute('order');
-    }
-
-    /**
-     * @Route("/{order}/{id}", name="order_product_delete", methods={"DELETE"})
-     * @param Request $request
-     * @param Order $order
-     * @param CartProduct $cartProduct
-     * @return Response
-     */
-    public function removeProduct(Request $request, Order $order, CartProduct $cartProduct): Response
-    {
-        if ($this->isCsrfTokenValid('delete'.$cartProduct->getId(), $request->request->get('_token'))) {
-
-            //reducing price
-            $order->setPrice($order->getPrice() - $cartProduct->getProduct()->getPrice()*$cartProduct->getAmount());
-
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($cartProduct);
-            $entityManager->persist($order);
-            $entityManager->flush();
-        }
 
         return $this->redirectToRoute('order');
     }

@@ -10,7 +10,9 @@
                         <td>{{ prod.product.description }}</td>
                         <td>Amount: {{ prod.amount }}</td>
                         <td>{{ prod.product.price }} €</td>
-                        <td>{{ include('order/_delete_form.html.twig') }}</td>
+                        {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_EMPLOYEE') %}
+                            <td>{{ include('order/_delete_form.html.twig') }}</td>
+                        {% endif %}
                     </tr>
                 {% endif %}
             {% endfor %}

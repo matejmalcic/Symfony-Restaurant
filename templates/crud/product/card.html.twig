@@ -11,15 +11,8 @@
             {% if is_granted('ROLE_ADMIN') %}
                 <a class="btn" href="{{ path('product_edit', {'id': product.id}) }}" style="display: inline">Edit</a>
                 {{ include('crud/product/_delete_form.html.twig') }}
-            {% elseif not is_granted('ROLE_EMPLOYEE') %}
+            {% elseif not is_granted('ROLE_EMPLOYEE') and is_granted('ROLE_USER') %}
                 {{ include('crud/product/add_product_to_cart.html.twig') }}
-
-                {#                <a href="{{ path('add_product_to_cart', {'id': product.id}) }}">#}
-{#                    <i class="fas fa-cart-plus fa-2x"#}
-{#                       data-productId="{{ product.id }}"#}
-{#                       data-productName="{{ product.name }}"#}
-{#                       data-toggle="modal" data-target="#myModal"#}
-{#                    ></i></a>#}
             {% endif %}
         </div>
     </div>

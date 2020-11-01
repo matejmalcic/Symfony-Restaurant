@@ -29,6 +29,16 @@ class StatusRepository extends ServiceEntityRepository
             ;
     }
 
+    public function getLast()
+    {
+        return $this->createQueryBuilder('s')
+            ->orderBy('s.number', 'DESC')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
     public function findNext($value, $direction)
     {
         if($direction === 'prev'){
