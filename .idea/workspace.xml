@@ -20,17 +20,35 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c59e9b4d-3331-46fc-ac23-775f8ee207d6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/restaurant.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/restaurant.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/CartController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/CartController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/Crud/ProductController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Crud/ProductController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/RegistrationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/RegistrationController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/Crud/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Crud/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/OrderController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/OrderController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/crud/category/_delete_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/crud/category/_delete_form.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/crud/category/_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/crud/category/_form.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/crud/category/edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/crud/category/edit.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/crud/category/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/crud/category/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/crud/category/new.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/crud/category/new.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/crud/product/_delete_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/crud/product/_delete_form.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/crud/product/_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/crud/product/_form.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/crud/product/add_product_to_cart.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/crud/product/add_product_to_cart.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/crud/product/edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/crud/product/edit.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/crud/product/new.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/crud/product/new.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/crud/status/_delete_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/crud/status/_delete_form.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/crud/status/_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/crud/status/_form.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/crud/status/edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/crud/status/edit.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/crud/status/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/crud/status/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/crud/status/new.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/crud/status/new.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/crud/user/_delete_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/crud/user/_delete_form.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/crud/user/_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/crud/user/_form.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/crud/user/edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/crud/user/edit.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/crud/user/new.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/crud/user/new.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/crud/user/show.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/registration/register.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/registration/register.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/security/login.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/security/login.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -339,10 +357,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="778" y="445" width="354" height="141" key="NewPhpFileDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1604047714574" />
-    <state x="790" y="225" width="329" height="582" key="RollbackChangesDialog" timestamp="1603978137125">
+    <state x="790" y="225" width="329" height="582" key="RollbackChangesDialog" timestamp="1604313888306">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="790" y="225" width="329" height="582" key="RollbackChangesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1603978137125" />
+    <state x="790" y="225" width="329" height="582" key="RollbackChangesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1604313888306" />
     <state x="464" y="154" key="SettingsEditor" timestamp="1604254569011">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

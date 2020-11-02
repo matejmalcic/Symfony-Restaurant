@@ -102,12 +102,12 @@ class OrderController extends AbstractController
             $user->setPoints($user->getPoints() + $cart->getPrice());
             $em->persist($user);
         }
-        $em->remove($order);
-        $em->remove($cart);
         foreach ($products as $product)
         {
             $em->remove($product);
         }
+        $em->remove($cart);
+        $em->remove($order);
         $em->flush();
 
         return $this->redirectToRoute('order');

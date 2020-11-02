@@ -75,9 +75,10 @@ class CartController extends AbstractController
             $entityManager->persist($order);
             $entityManager->flush();
             $this->addFlash('success', 'Your order is received!');
-            $this->generate_pdf($cartProductRepository, $cart, $session);
+            $oldSession = $session;
             $session->migrate();
             $this->createCart($entityManager, $session);
+            $this->generate_pdf($cartProductRepository, $cart, $oldSession);
         }else {
             $this->addFlash('warning', 'Your cart is empty!');
         }
@@ -162,7 +163,7 @@ class CartController extends AbstractController
      * @param Cart $cart
      * @param SessionInterface $session
      */
-    public function generate_pdf(CartProductRepository $cartProductRepository, Cart $cart, SessionInterface $session): Void
+    public function generate_pdf(CartProductRepository $cartProductRepository, Cart $cart, SessionInterface $session)
     {
 
         $session->start();
@@ -179,13 +180,12 @@ class CartController extends AbstractController
             'price' => $cart->getPrice()
         ]);
 
-
         $dompdf->loadHtml($html);
         $dompdf->setPaper('A4', 'portrait');
         $dompdf->render();
         $dompdf->stream("bill.pdf", [
             "Attachment" => false
         ]);
-        exit(0);
+
     }
 }

@@ -8,7 +8,12 @@ thead > tr {
     background-color: #9f5811;
 }
 
-th, td {
+th {
+    border-bottom: 1px solid #ffad33;
+    color: white;
+}
+
+td {
     border-bottom: 1px solid #ffad33;
 }
 
@@ -24,6 +29,21 @@ th, td {
     color: white;
 }
 
+.btn-delete {
+    background-color: #9f5811;
+    color: white;
+    border-radius: 5px;
+    border-collapse: collapse;
+    border: none;
+    padding: 4px 11px;
+    margin-top: 2px;
+}
+
 .fas {
     color: #9f5811;
+}
+
+.form-container {
+    width: 50%;
+    margin: auto;
 }

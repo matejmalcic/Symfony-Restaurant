@@ -3,9 +3,9 @@
 {% block title %}New Category{% endblock %}
 
 {% block body %}
+    <div class="form-container">
     <h1>Create new Category</h1>
 
     {{ include('crud/category/_form.html.twig') }}
-
-    <a class="btn" href="{{ path('category_index') }}">Back to list</a>
+    </div>
 {% endblock %}
