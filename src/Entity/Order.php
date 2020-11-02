@@ -3,7 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\OrderRepository;
-use Cassandra\Time;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -18,12 +17,6 @@ class Order
      * @ORM\Column(type="integer")
      */
     private $id;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=User::class)
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $user;
 
     /**
      * @ORM\ManyToOne(targetEntity=Cart::class)
@@ -46,6 +39,11 @@ class Order
      */
     private $status;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="orders")
+     */
+    private $user;
+
     public function __construct()
     {
         $this->orderTime = new \DateTime();
@@ -54,18 +52,6 @@ class Order
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getUser(): ?User
-    {
-        return $this->user;
-    }
-
-    public function setUser(?User $user): self
-    {
-        $this->user = $user;
-
-        return $this;
     }
 
     public function getCart(): ?Cart
@@ -112,6 +98,18 @@ class Order
     public function setStatus(?Status $status): self
     {
         $this->status = $status;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

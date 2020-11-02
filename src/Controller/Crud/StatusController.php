@@ -23,7 +23,7 @@ class StatusController extends AbstractController
     public function index(StatusRepository $statusRepository): Response
     {
         return $this->render('crud/status/index.html.twig', [
-            'statuses' => $statusRepository->findAll(),
+            'statuses' => $statusRepository->findBy([], ['number' => 'ASC']),
         ]);
     }
 
@@ -44,19 +44,9 @@ class StatusController extends AbstractController
             return $this->redirectToRoute('status_index');
         }
 
-        return $this->render('status/new.html.twig', [
+        return $this->render('crud/status/new.html.twig', [
             'status' => $status,
             'form' => $form->createView(),
-        ]);
-    }
-
-    /**
-     * @Route("/{id}", name="status_show", methods={"GET"})
-     */
-    public function show(Status $status): Response
-    {
-        return $this->render('status/show.html.twig', [
-            'status' => $status,
         ]);
     }
 
@@ -74,7 +64,7 @@ class StatusController extends AbstractController
             return $this->redirectToRoute('status_index');
         }
 
-        return $this->render('status/edit.html.twig', [
+        return $this->render('crud/status/edit.html.twig', [
             'status' => $status,
             'form' => $form->createView(),
         ]);

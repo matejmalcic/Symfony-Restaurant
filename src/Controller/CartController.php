@@ -4,16 +4,22 @@ namespace App\Controller;
 
 use App\Entity\Cart;
 use App\Entity\CartProduct;
+use App\Entity\Order;
 use App\Entity\Product;
 use App\Entity\User;
 use App\Repository\CartProductRepository;
 use App\Repository\CartRepository;
 use App\Repository\ProductRepository;
+use App\Repository\StatusRepository;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
+use Dompdf\Dompdf;
+use Dompdf\Options;
+use phpDocumentor\Reflection\Types\Void_;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -26,9 +32,10 @@ class CartController extends AbstractController
      * @param CartProductRepository $cartProductRepository
      * @return Response
      */
-    public function index(CartProductRepository $cartProductRepository): Response
+    public function index(CartProductRepository $cartProductRepository, CartRepository $cartRepository, SessionInterface $session): Response
     {
-        $cart = $this->getUser()->getCart();
+        $session->start(); //why not working without this
+        $cart = $cartRepository->findOneBy(['session' => $session->getId()]);
         $products = $cartProductRepository->findByExampleField($cart->getId());
 
         return $this->render('cart/index.html.twig', [
@@ -42,25 +49,52 @@ class CartController extends AbstractController
      * @param EntityManagerInterface $entityManager
      * @param $user
      */
-    public function createCart( User $user, EntityManagerInterface $entityManager): Void
+    public function createCart(EntityManagerInterface $entityManager, SessionInterface $session): Void
     {
         $cart = new Cart();
-        $cart->setUser($user);
         $cart->setPrice(0);
+        $cart->setSession($session->getId());
         $entityManager->persist($cart);
         $entityManager->flush();
     }
 
     /**
-     * @Route("/add/{id}", name="add_product_to_cart", methods={"GET", "POST"})
+     * @Route("/make/order/{cart}", name="make_order", methods={"GET", "POST"})
+     * @param EntityManagerInterface $entityManager
+     * @param $user
+     */
+    public function makeOrder(Cart $cart, StatusRepository $statusRepository, EntityManagerInterface $entityManager, CartProductRepository $cartProductRepository, SessionInterface $session): Response
+    {
+        if($cart->getPrice() != 0){
+            $status = $statusRepository->getFirst();
+            $order = new Order();
+            $order->setUser($this->getUser());
+            $order->setCart($cart);
+            $order->setStatus($status[0]);
+            $order->setPrice($cart->getPrice());
+            $entityManager->persist($order);
+            $entityManager->flush();
+            $this->addFlash('success', 'Your order is received!');
+            $this->generate_pdf($cartProductRepository, $cart, $session);
+            $session->migrate();
+            $this->createCart($entityManager, $session);
+        }else {
+            $this->addFlash('warning', 'Your cart is empty!');
+        }
+
+
+        return $this->redirectToRoute('cart_index');
+    }
+
+    /**
+     * @Route("/add/{cart}{id}", name="add_product_to_cart", methods={"GET", "POST"})
      * @param Request $request
      * @param CartRepository $cartRepository
      * @param Product $product
      * @return Response
      */
-    public function addProductToCart(Request $request, CartRepository $cartRepository, Product $product, CartProductRepository $cartProductRepository): Response
+    public function addProductToCart(Request $request, Cart $cart, Product $product, CartProductRepository $cartProductRepository, SessionInterface $session): Response
     {
-        $cart = $cartRepository->findOneBy(['user' => $this->getUser()]);
         $amount = $request->get('amount');
 
         $cartProduct = $cartProductRepository->findOneBy([
@@ -85,8 +119,13 @@ class CartController extends AbstractController
         $entityManager->persist($cart);
         $entityManager->flush();
 
-        $this->addFlash('success',  $product->getName() .' is now in cart!');
-        return $this->redirectToRoute('product_index');
+        if($request->get('route') === 'order'){
+            $this->addFlash('success',  $product->getName() .' added to order!');
+            return $this->redirectToRoute('order');
+        }else{
+            $this->addFlash('success',  $product->getName() .' added to cart!');
+            return $this->redirectToRoute('product_index');
+        }
     }
 
     /**
@@ -110,6 +149,43 @@ class CartController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('cart_index');
+        if($request->get('route') === 'order'){
+            return $this->redirectToRoute('order');
+        }else{
+            return $this->redirectToRoute('cart_index');
+        }
+    }
+
+    /**
+     * @Route("/pdf", name="pdf")
+     * @param CartProductRepository $cartProductRepository
+     * @param Cart $cart
+     * @param SessionInterface $session
+     */
+    public function generate_pdf(CartProductRepository $cartProductRepository, Cart $cart, SessionInterface $session): Void
+    {
+
+        $session->start();
+        $products = $cartProductRepository->findByExampleField($cart->getId());
+
+        $options = new Options();
+        $options->set('defaultFont', 'Roboto');
+
+
+        $dompdf = new Dompdf($options);
+
+        $html = $this->renderView('pdf/pdf.html.twig', [
+            'products' => $products,
+            'price' => $cart->getPrice()
+        ]);
+
+
+        $dompdf->loadHtml($html);
+        $dompdf->setPaper('A4', 'portrait');
+        $dompdf->render();
+        $dompdf->stream("bill.pdf", [
+            "Attachment" => false
+        ]);
+        exit(0);
     }
 }

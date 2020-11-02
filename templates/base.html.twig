@@ -21,18 +21,20 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{ path('product_index') }}">Products</a>
             </li>
+            {% if app.user %}
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('order') }}">Orders</a>
+            </li>
+            {% endif %}
             {% if is_granted('ROLE_ADMIN') %}
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('user_index') }}">Users</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('category_index') }}">Category</a>
+                    <a class="nav-link" href="{{ path('category_index') }}">Categories</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('status_index') }}">Status</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('order_index') }}">Orders</a>
                 </li>
             {% elseif app.user and not is_granted('ROLE_EMPLOYEE') %}
                 <li class="nav-item">
@@ -49,6 +51,9 @@
                     <a class="nav-link" href="{{ path('app_register') }}">Register</a>
                 </li>
             {% else %}
+                <li class="nav-item">
+                    {{ app.user.username }}
+                </li>
                 <li class="nav-item">
                     <a class="btn btn-outline-danger my-2 my-sm-0" href="{{ path('app_logout') }}">Logout</a>
                 </li>
@@ -76,7 +81,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
         integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
         crossorigin="anonymous"></script>
-
+<script src="{{ asset('js/app.js') }}" ></script>
 {% block javascripts %}{% endblock %}
 </body>
 </html>
