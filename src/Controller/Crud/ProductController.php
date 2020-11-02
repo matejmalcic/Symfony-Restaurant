@@ -81,12 +81,20 @@ class ProductController extends AbstractController
      * @IsGranted("ROLE_ADMIN", statusCode=404, message="You don't have premmision for this!")
      * @Route("/{id}/edit", name="product_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Product $product): Response
+    public function edit(Request $request, Product $product, UploaderHelper $uploaderHelper): Response
     {
         $form = $this->createForm(ProductType::class, $product);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            /** @var UploadedFile $uploadedFile */
+            $uploadedFile = $form['imageFile']->getData();
+
+            if($uploadedFile) {
+                $newFilename = $uploaderHelper->uploadProductImage($uploadedFile);
+                $product->setImage($newFilename);
+            }
+
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('product_index');

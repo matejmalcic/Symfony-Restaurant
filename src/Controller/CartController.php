@@ -13,6 +13,9 @@ use App\Repository\ProductRepository;
 use App\Repository\StatusRepository;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
+use Dompdf\Dompdf;
+use Dompdf\Options;
+use phpDocumentor\Reflection\Types\Void_;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -60,7 +63,7 @@ class CartController extends AbstractController
      * @param EntityManagerInterface $entityManager
      * @param $user
      */
-    public function makeOrder(Cart $cart, StatusRepository $statusRepository, EntityManagerInterface $entityManager, SessionInterface $session): Response
+    public function makeOrder(Cart $cart, StatusRepository $statusRepository, EntityManagerInterface $entityManager, CartProductRepository $cartProductRepository, SessionInterface $session): Response
     {
         if($cart->getPrice() != 0){
             $status = $statusRepository->getFirst();
@@ -72,6 +75,7 @@ class CartController extends AbstractController
             $entityManager->persist($order);
             $entityManager->flush();
             $this->addFlash('success', 'Your order is received!');
+            $this->generate_pdf($cartProductRepository, $cart, $session);
             $session->migrate();
             $this->createCart($entityManager, $session);
         }else {
@@ -150,5 +154,38 @@ class CartController extends AbstractController
         }else{
             return $this->redirectToRoute('cart_index');
         }
+    }
+
+    /**
+     * @Route("/pdf", name="pdf")
+     * @param CartProductRepository $cartProductRepository
+     * @param Cart $cart
+     * @param SessionInterface $session
+     */
+    public function generate_pdf(CartProductRepository $cartProductRepository, Cart $cart, SessionInterface $session): Void
+    {
+
+        $session->start();
+        $products = $cartProductRepository->findByExampleField($cart->getId());
+
+        $options = new Options();
+        $options->set('defaultFont', 'Roboto');
+
+
+        $dompdf = new Dompdf($options);
+
+        $html = $this->renderView('pdf/pdf.html.twig', [
+            'products' => $products,
+            'price' => $cart->getPrice()
+        ]);
+
+
+        $dompdf->loadHtml($html);
+        $dompdf->setPaper('A4', 'portrait');
+        $dompdf->render();
+        $dompdf->stream("bill.pdf", [
+            "Attachment" => false
+        ]);
+        exit(0);
     }
 }
