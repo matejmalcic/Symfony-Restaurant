@@ -20,34 +20,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c59e9b4d-3331-46fc-ac23-775f8ee207d6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/restaurant.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/restaurant.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/CartController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/CartController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/Crud/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Crud/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/OrderController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/OrderController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/crud/category/_delete_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/crud/category/_delete_form.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/crud/category/_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/crud/category/_form.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/crud/category/edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/crud/category/edit.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/crud/category/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/crud/category/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/crud/category/new.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/crud/category/new.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/crud/product/_delete_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/crud/product/_delete_form.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/crud/product/_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/crud/product/_form.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/crud/product/add_product_to_cart.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/crud/product/add_product_to_cart.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/crud/product/edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/crud/product/edit.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/crud/product/new.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/crud/product/new.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/crud/status/_delete_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/crud/status/_delete_form.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/crud/status/_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/crud/status/_form.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/crud/status/edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/crud/status/edit.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/crud/status/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/crud/status/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/crud/status/new.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/crud/status/new.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/crud/user/_delete_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/crud/user/_delete_form.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/crud/user/_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/crud/user/_form.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/crud/user/edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/crud/user/edit.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/crud/user/new.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/crud/user/new.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/crud/user/show.html.twig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/registration/register.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/registration/register.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/bundles.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/bundles.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/security/login.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/security/login.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -190,6 +169,7 @@
       <path value="$PROJECT_DIR$/vendor/dompdf/dompdf" />
       <path value="$PROJECT_DIR$/vendor/phenx/php-font-lib" />
       <path value="$PROJECT_DIR$/vendor/phenx/php-svg-lib" />
+      <path value="$PROJECT_DIR$/vendor/symfonycasts/reset-password-bundle" />
     </include_path>
   </component>
   <component name="ProjectId" id="1jH2wJRgDhxrhr0oPA8TYRRYbET" />
@@ -274,79 +254,79 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="711" y="324" width="642" height="384" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1603895958553" />
-    <state x="693" y="277" width="524" height="478" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1604256108692">
+    <state x="693" y="277" width="524" height="478" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1604409766914">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="693" y="277" width="524" height="478" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1604256108692" />
+    <state x="693" y="277" width="524" height="478" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1604409766914" />
     <state x="2203" y="163" width="524" height="478" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.3840.1040@0.0.3840.1040" timestamp="1603705263681" />
-    <state x="1167" y="539" width="700" height="501" key="#xdebugger.evaluate" timestamp="1604168625676">
+    <state x="1167" y="539" width="700" height="501" key="#xdebugger.evaluate" timestamp="1604410378537">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="1167" y="539" width="700" height="501" key="#xdebugger.evaluate/0.0.1920.1040@0.0.1920.1040" timestamp="1604168625676" />
+    <state x="1167" y="539" width="700" height="501" key="#xdebugger.evaluate/0.0.1920.1040@0.0.1920.1040" timestamp="1604410378537" />
     <state x="3241" y="131" key="#xdebugger.evaluate/0.0.3840.1040@0.0.3840.1040" timestamp="1603718927758" />
     <state x="743" y="277" width="424" height="478" key="FileChooserDialogImpl" timestamp="1603465180927">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="743" y="277" width="424" height="478" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1603465180927" />
-    <state width="1878" height="277" key="GridCell.Tab.0.bottom" timestamp="1604263303170">
+    <state width="1878" height="277" key="GridCell.Tab.0.bottom" timestamp="1604410734014">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1878" height="277" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1604263303170" />
+    <state width="1878" height="277" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1604410734014" />
     <state width="1878" height="270" key="GridCell.Tab.0.bottom/0.0.3840.1040@0.0.3840.1040" timestamp="1603723658499" />
-    <state width="1878" height="277" key="GridCell.Tab.0.center" timestamp="1604263303170">
+    <state width="1878" height="277" key="GridCell.Tab.0.center" timestamp="1604410734014">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1878" height="277" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1604263303170" />
+    <state width="1878" height="277" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1604410734014" />
     <state width="1878" height="270" key="GridCell.Tab.0.center/0.0.3840.1040@0.0.3840.1040" timestamp="1603723658498" />
-    <state width="1878" height="277" key="GridCell.Tab.0.left" timestamp="1604263303170">
+    <state width="1878" height="277" key="GridCell.Tab.0.left" timestamp="1604410734013">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1878" height="277" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1604263303170" />
+    <state width="1878" height="277" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1604410734013" />
     <state width="1878" height="270" key="GridCell.Tab.0.left/0.0.3840.1040@0.0.3840.1040" timestamp="1603723658497" />
-    <state width="1878" height="277" key="GridCell.Tab.0.right" timestamp="1604263303170">
+    <state width="1878" height="277" key="GridCell.Tab.0.right" timestamp="1604410734014">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1878" height="277" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1604263303170" />
+    <state width="1878" height="277" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1604410734014" />
     <state width="1878" height="270" key="GridCell.Tab.0.right/0.0.3840.1040@0.0.3840.1040" timestamp="1603723658498" />
-    <state width="1878" height="277" key="GridCell.Tab.1.bottom" timestamp="1604263303171">
+    <state width="1878" height="277" key="GridCell.Tab.1.bottom" timestamp="1604410734015">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1878" height="277" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1604263303171" />
+    <state width="1878" height="277" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1604410734015" />
     <state width="1878" height="270" key="GridCell.Tab.1.bottom/0.0.3840.1040@0.0.3840.1040" timestamp="1603723658503" />
-    <state width="1878" height="277" key="GridCell.Tab.1.center" timestamp="1604263303171">
+    <state width="1878" height="277" key="GridCell.Tab.1.center" timestamp="1604410734015">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1878" height="277" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1604263303171" />
+    <state width="1878" height="277" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1604410734015" />
     <state width="1878" height="270" key="GridCell.Tab.1.center/0.0.3840.1040@0.0.3840.1040" timestamp="1603723658502" />
-    <state width="1878" height="277" key="GridCell.Tab.1.left" timestamp="1604263303171">
+    <state width="1878" height="277" key="GridCell.Tab.1.left" timestamp="1604410734014">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1878" height="277" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1604263303171" />
+    <state width="1878" height="277" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1604410734014" />
     <state width="1878" height="270" key="GridCell.Tab.1.left/0.0.3840.1040@0.0.3840.1040" timestamp="1603723658500" />
-    <state width="1878" height="277" key="GridCell.Tab.1.right" timestamp="1604263303171">
+    <state width="1878" height="277" key="GridCell.Tab.1.right" timestamp="1604410734015">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1878" height="277" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1604263303171" />
+    <state width="1878" height="277" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1604410734015" />
     <state width="1878" height="270" key="GridCell.Tab.1.right/0.0.3840.1040@0.0.3840.1040" timestamp="1603723658502" />
-    <state width="1878" height="277" key="GridCell.Tab.2.bottom" timestamp="1604263303172">
+    <state width="1878" height="277" key="GridCell.Tab.2.bottom" timestamp="1604410734016">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1878" height="277" key="GridCell.Tab.2.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1604263303172" />
+    <state width="1878" height="277" key="GridCell.Tab.2.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1604410734016" />
     <state width="1878" height="270" key="GridCell.Tab.2.bottom/0.0.3840.1040@0.0.3840.1040" timestamp="1603723658504" />
-    <state width="1878" height="277" key="GridCell.Tab.2.center" timestamp="1604263303171">
+    <state width="1878" height="277" key="GridCell.Tab.2.center" timestamp="1604410734015">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1878" height="277" key="GridCell.Tab.2.center/0.0.1920.1040@0.0.1920.1040" timestamp="1604263303171" />
+    <state width="1878" height="277" key="GridCell.Tab.2.center/0.0.1920.1040@0.0.1920.1040" timestamp="1604410734015" />
     <state width="1878" height="270" key="GridCell.Tab.2.center/0.0.3840.1040@0.0.3840.1040" timestamp="1603723658503" />
-    <state width="1878" height="277" key="GridCell.Tab.2.left" timestamp="1604263303171">
+    <state width="1878" height="277" key="GridCell.Tab.2.left" timestamp="1604410734015">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1878" height="277" key="GridCell.Tab.2.left/0.0.1920.1040@0.0.1920.1040" timestamp="1604263303171" />
+    <state width="1878" height="277" key="GridCell.Tab.2.left/0.0.1920.1040@0.0.1920.1040" timestamp="1604410734015" />
     <state width="1878" height="270" key="GridCell.Tab.2.left/0.0.3840.1040@0.0.3840.1040" timestamp="1603723658503" />
-    <state width="1878" height="277" key="GridCell.Tab.2.right" timestamp="1604263303172">
+    <state width="1878" height="277" key="GridCell.Tab.2.right" timestamp="1604410734016">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1878" height="277" key="GridCell.Tab.2.right/0.0.1920.1040@0.0.1920.1040" timestamp="1604263303172" />
+    <state width="1878" height="277" key="GridCell.Tab.2.right/0.0.1920.1040@0.0.1920.1040" timestamp="1604410734016" />
     <state width="1878" height="270" key="GridCell.Tab.2.right/0.0.3840.1040@0.0.3840.1040" timestamp="1603723658504" />
     <state x="733" y="248" width="422" height="536" key="NewPhpClassDialog" timestamp="1604162392676">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -390,6 +370,36 @@
           <url>file://$PROJECT_DIR$/src/Controller/CartController.php</url>
           <line>76</line>
           <option name="timeStamp" value="20" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/src/Controller/ResetPasswordController.php</url>
+          <line>41</line>
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/src/Controller/ResetPasswordController.php</url>
+          <line>134</line>
+          <option name="timeStamp" value="28" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/src/Controller/ResetPasswordController.php</url>
+          <line>161</line>
+          <option name="timeStamp" value="29" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/src/Controller/ResetPasswordController.php</url>
+          <line>172</line>
+          <option name="timeStamp" value="30" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/src/Controller/ResetPasswordController.php</url>
+          <line>174</line>
+          <option name="timeStamp" value="31" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/src/Controller/ResetPasswordController.php</url>
+          <line>64</line>
+          <option name="timeStamp" value="32" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
