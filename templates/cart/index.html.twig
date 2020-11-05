@@ -6,7 +6,9 @@
 
     <h3>Cart price: {{ cart.price }} €</h3>
     <a class="btn" href="{{ path('make_order', {'cart': cart.id}) }}">Make Order</a>
-
+    {% if cart.price != 0 %}
+    <a class="btn" target="_blank" href="{{ path('pdf') }}">Show bill</a>
+{% endif %}
     <table class="table">
         <thead>
         <tr>
@@ -21,7 +23,7 @@
         <tbody>
         {% for cart_product in cart_products %}
             <tr>
-                <td><img src="{{ asset('/images/' ~ cart_product.product.image) }}" alt="Product image" style="width: 150px; height: 100px;"/></td>
+                <td><img src="{{ asset('images/' ~ cart_product.product.image) }}" alt="Product image" style="width: 150px; height: 100px;"/></td>
                 <td>{{ cart_product.product.name }}</td>
                 <td>{{ cart_product.product.description }}</td>
                 <td>{{ cart_product.amount }}</td>

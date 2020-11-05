@@ -54,20 +54,9 @@ class UserController extends AbstractController
             return $this->redirectToRoute('user_index');
         }
 
-        $this->addFlash('warning', 'Something is wrong');
         return $this->render('crud/user/new.html.twig', [
             'user' => $user,
             'form' => $form->createView(),
-        ]);
-    }
-
-    /**
-     * @Route("/{id}", name="user_show", methods={"GET"})
-     */
-    public function show(User $user): Response
-    {
-        return $this->render('crud/user/show.html.twig', [
-            'user' => $user,
         ]);
     }
 

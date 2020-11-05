@@ -3,9 +3,11 @@
 {% block title %}New Status{% endblock %}
 
 {% block body %}
+    <div class="form-container">
+
     <h1>Create new Status</h1>
 
     {{ include('crud/status/_form.html.twig') }}
 
-    <a class="btn" href="{{ path('status_index') }}">Back to list</a>
+    </div>
 {% endblock %}

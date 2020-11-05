@@ -1,6 +1,6 @@
 body {
-    background-image: url('https://restaurantindia.s3.ap-south-1.amazonaws.com/s3fs-public/content11850.jpg');
-    background-size: cover;
+    background-image: url('https://cdn.wallpapersafari.com/89/50/AjvRqI.jpg');
+    background-size: auto;
     background-attachment: scroll;
 }
 
@@ -8,8 +8,31 @@ thead > tr {
     background-color: #9f5811;
 }
 
-th, td {
+th {
     border-bottom: 1px solid #ffad33;
+    color: white;
+}
+
+td {
+    border-bottom: 1px solid #ffad33;
+}
+
+.navbar-collapse, .navbar-expand-lg{
+    background-color: #9f5811;
+}
+
+.navbar-nav{
+    font-weight: bolder;
+    color: white;
+}
+
+.nav-link{
+    font-size: larger;
+    color: white;
+}
+
+.nav-link:hover{
+    color: silver;
 }
 
 .container {
@@ -19,11 +42,34 @@ th, td {
     opacity: 0.83;"
 }
 
+.welcome {
+    font-size: 120px;
+    font-family: Georgia, Times, serif;
+    text-align: center;
+    margin-top: 8px;
+    color: #cc6600;
+}
+
 .btn {
     background-color: #9f5811;
     color: white;
 }
 
+.btn-delete {
+    background-color: #9f5811;
+    color: white;
+    border-radius: 5px;
+    border-collapse: collapse;
+    border: none;
+    padding: 4px 11px;
+    margin-top: 2px;
+}
+
 .fas {
     color: #9f5811;
+}
+
+.form-container {
+    width: 50%;
+    margin: auto;
 }

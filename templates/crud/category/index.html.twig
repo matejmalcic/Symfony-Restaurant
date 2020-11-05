@@ -3,8 +3,7 @@
 {% block title %}Category index{% endblock %}
 
 {% block body %}
-    <h1>Category index</h1>
-
+<div class="form-container">
     <table class="table">
         <thead>
             <tr>
@@ -32,4 +31,5 @@
     </table>
 
     <a class="btn" href="{{ path('category_new') }}">Create new</a>
+</div>
 {% endblock %}

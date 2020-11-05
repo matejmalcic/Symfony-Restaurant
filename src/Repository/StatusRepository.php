@@ -19,27 +19,7 @@ class StatusRepository extends ServiceEntityRepository
         parent::__construct($registry, Status::class);
     }
 
-    public function getFirst()
-    {
-        return $this->createQueryBuilder('s')
-            ->orderBy('s.number', 'ASC')
-            ->setMaxResults(1)
-            ->getQuery()
-            ->getResult()
-            ;
-    }
-
-    public function getLast()
-    {
-        return $this->createQueryBuilder('s')
-            ->orderBy('s.number', 'DESC')
-            ->setMaxResults(1)
-            ->getQuery()
-            ->getResult()
-            ;
-    }
-
-    public function findNext($value, $direction)
+    public function findStatus($value, $direction)
     {
         if($direction === 'prev'){
             $orderBy= 'DESC';
@@ -58,32 +38,4 @@ class StatusRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
-    // /**
-    //  * @return Status[] Returns an array of Status objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('s')
-            ->andWhere('s.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('s.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?Status
-    {
-        return $this->createQueryBuilder('s')
-            ->andWhere('s.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

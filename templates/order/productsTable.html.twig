@@ -5,7 +5,7 @@
             {% for prod in product %}
                 {% if prod.cart.id == order.cart.id %}
                     <tr>
-                        <td><img src="{{ asset('/images/' ~ prod.product.image) }}" alt="Product image" style="width: 150px; height: 100px;"/></td>
+                        <td><img src="{{ asset('images/' ~ prod.product.image) }}" alt="Product image" style="width: 150px; height: 100px;"/></td>
                         <td>{{ prod.product.name }}</td>
                         <td>{{ prod.product.description }}</td>
                         <td>Amount: {{ prod.amount }}</td>

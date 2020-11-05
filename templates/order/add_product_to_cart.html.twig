@@ -1,6 +1,6 @@
 <form method="post" action="{{ path('add_product_to_cart', {'cart': cart.id, 'id': product.id }) }}" style="display: inline"
       onsubmit="return confirm('Are you sure you want to add this item?');">
-    <input type="number" name="amount" value=1>
+    <input type="number" name="amount" min=1 value=1 style="width: 10%">
     <input type="hidden" name="route" value="order">
     <button class="btn">Add</button>
 </form>

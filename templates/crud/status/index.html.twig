@@ -3,6 +3,7 @@
 {% block title %}Status index{% endblock %}
 
 {% block body %}
+    <div class="form-container">
     <table class="table">
         <thead>
             <tr>
@@ -30,4 +31,5 @@
     </table>
 
     <a class="btn" href="{{ path('status_new') }}">Create new</a>
+    </div>
 {% endblock %}
