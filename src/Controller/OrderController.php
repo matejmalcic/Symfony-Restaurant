@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controller;
 
 use App\Entity\CartProduct;
@@ -27,7 +29,7 @@ class OrderController extends AbstractController
      */
     public function index(OrderRepository $orderRepository, CartProductRepository $cartProductRepository): Response
     {
-        if($this->isGranted('ROLE_ADMIN')){
+        if($this->isGranted('ROLE_ADMIN') || $this->isGranted('ROLE_EMPLOYEE')){
             $orders = $orderRepository->findAll();
         }else{
             $orders = $orderRepository->findBy(['user' => $this->getUser()]);
@@ -58,7 +60,7 @@ class OrderController extends AbstractController
             $this->denyAccessUnlessGranted($this->getUser());
         }
 
-        $newStatus = $statusRepository->findNext($order->getStatus()->getNumber(), $direction);
+        $newStatus = $statusRepository->findStatus($order->getStatus()->getNumber(), $direction);
 
         if($newStatus) {
             $order->setStatus($newStatus[0]);
@@ -98,8 +100,8 @@ class OrderController extends AbstractController
         $products = $cartProductRepository->findBy(['cart' => $cart]);
 
         $user = $order->getUser();
-        if($order->getStatus() === $statusRepository->getLast()[0]){
-            $user->setPoints($user->getPoints() + $cart->getPrice());
+        if($order->getStatus() === $statusRepository->findOneBy([],['number' => 'DESC'])){
+            $user->setPoints($user->getPoints() + (int)floor($cart->getPrice()/10));
             $em->persist($user);
         }
         foreach ($products as $product)

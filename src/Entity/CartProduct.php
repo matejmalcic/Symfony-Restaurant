@@ -30,7 +30,7 @@ class CartProduct
     private $product;
 
     /**
-     * @ORM\Column(type="integer", options={"default": 0})
+     * @ORM\Column(type="integer", options={"default": 1})
      */
     private $amount;
 

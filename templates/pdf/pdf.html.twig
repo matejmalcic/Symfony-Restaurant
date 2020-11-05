@@ -6,7 +6,6 @@
 <body>
 <h4>Payment bill</h4>
 <table style="
-    border-collapse: collapse;
     text-align: left;
     width: 100%;">
     <thead>
@@ -18,7 +17,7 @@
     </thead>
     <tbody>
     {% for products in products %}
-        <tr style="border: 1px solid black;">
+        <tr>
             <td>{{ products.product.name }}</td>
             <td>{{ products.amount }}</td>
             <td>{{ products.product.price }} €</td>

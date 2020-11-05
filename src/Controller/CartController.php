@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controller;
 
 use App\Entity\Cart;
@@ -34,9 +36,11 @@ class CartController extends AbstractController
      */
     public function index(CartProductRepository $cartProductRepository, CartRepository $cartRepository, SessionInterface $session): Response
     {
-        $session->start(); //why not working without this
+        $session->start();
         $cart = $cartRepository->findOneBy(['session' => $session->getId()]);
         $products = $cartProductRepository->findByExampleField($cart->getId());
+
+        $session->set('cart', $cart);
 
         return $this->render('cart/index.html.twig', [
             'cart' => $cart,
@@ -66,19 +70,17 @@ class CartController extends AbstractController
     public function makeOrder(Cart $cart, StatusRepository $statusRepository, EntityManagerInterface $entityManager, CartProductRepository $cartProductRepository, SessionInterface $session): Response
     {
         if($cart->getPrice() != 0){
-            $status = $statusRepository->getFirst();
+            $status = $statusRepository->findOneBy([],['number' => 'ASC']);
             $order = new Order();
             $order->setUser($this->getUser());
             $order->setCart($cart);
-            $order->setStatus($status[0]);
+            $order->setStatus($status);
             $order->setPrice($cart->getPrice());
             $entityManager->persist($order);
             $entityManager->flush();
             $this->addFlash('success', 'Your order is received!');
-            $oldSession = $session;
             $session->migrate();
             $this->createCart($entityManager, $session);
-            $this->generate_pdf($cartProductRepository, $cart, $oldSession);
         }else {
             $this->addFlash('warning', 'Your cart is empty!');
         }
@@ -96,7 +98,7 @@ class CartController extends AbstractController
      */
     public function addProductToCart(Request $request, Cart $cart, Product $product, CartProductRepository $cartProductRepository, SessionInterface $session): Response
     {
-        $amount = $request->get('amount');
+        $amount = $request->request->getInt('amount');
 
         $cartProduct = $cartProductRepository->findOneBy([
             'cart' => $cart,
@@ -140,7 +142,6 @@ class CartController extends AbstractController
     {
         if ($this->isCsrfTokenValid('delete'.$cartProduct->getId(), $request->request->get('_token'))) {
 
-            //reducing price
             $cart = $cartRepository->find($cartProduct->getCart()->getId());
             $cart->setPrice($cart->getPrice() - $cartProduct->getProduct()->getPrice()*$cartProduct->getAmount());
 
@@ -163,10 +164,16 @@ class CartController extends AbstractController
      * @param Cart $cart
      * @param SessionInterface $session
      */
-    public function generate_pdf(CartProductRepository $cartProductRepository, Cart $cart, SessionInterface $session)
+    public function generate_pdf(CartProductRepository $cartProductRepository, SessionInterface $session)
     {
-
         $session->start();
+        $cart = $session->get('cart');
+
+        if($cart->getPrice() == 0){
+            $this->addFlash('warning', 'You need to have some products in cart to view an bill.');
+            return $this->redirectToRoute('cart_index');
+        }
+
         $products = $cartProductRepository->findByExampleField($cart->getId());
 
         $options = new Options();

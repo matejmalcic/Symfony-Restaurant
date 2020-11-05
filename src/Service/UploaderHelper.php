@@ -25,7 +25,6 @@ class UploaderHelper
 
         $uploadedFile->move($destination, $newFilename);
 
-        //validation
         return $newFilename;
     }
 }

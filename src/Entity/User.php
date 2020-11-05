@@ -50,11 +50,6 @@ class User implements UserInterface
     private $last_name;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $session;
-
-    /**
      * @ORM\Column(type="integer", nullable=true)
      */
     private $points;
@@ -102,7 +97,6 @@ class User implements UserInterface
     public function getRoles(): array
     {
         $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
         $roles[] = 'ROLE_USER';
 
         return array_unique($roles);
@@ -135,7 +129,7 @@ class User implements UserInterface
      */
     public function getSalt()
     {
-        // not needed when using the "bcrypt" algorithm in security.yaml
+
     }
 
     /**
@@ -143,8 +137,7 @@ class User implements UserInterface
      */
     public function eraseCredentials()
     {
-        // If you store any temporary, sensitive data on the user, clear it here
-        // $this->plainPassword = null;
+
     }
 
     public function getFirstName(): ?string
@@ -167,18 +160,6 @@ class User implements UserInterface
     public function setLastName(string $last_name): self
     {
         $this->last_name = $last_name;
-
-        return $this;
-    }
-
-    public function getSession(): ?string
-    {
-        return $this->session;
-    }
-
-    public function setSession(?string $session): self
-    {
-        $this->session = $session;
 
         return $this;
     }
@@ -216,7 +197,6 @@ class User implements UserInterface
     public function removeOrder(Order $order): self
     {
         if ($this->orders->removeElement($order)) {
-            // set the owning side to null (unless already changed)
             if ($order->getUser() === $this) {
                 $order->setUser(null);
             }

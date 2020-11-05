@@ -24,6 +24,14 @@ td {
     opacity: 0.83;"
 }
 
+.welcome {
+    font-size: 120px;
+    font-family: Georgia, Times, serif;
+    text-align: center;
+    margin-top: 10px;
+    color: #cc6600;
+}
+
 .btn {
     background-color: #9f5811;
     color: white;

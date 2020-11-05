@@ -1,11 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controller\Crud;
 
 use App\Entity\Cart;
 use App\Entity\CartProduct;
 use App\Entity\Product;
 use App\Form\ProductType;
+use App\Repository\CartProductRepository;
 use App\Repository\CartRepository;
 use App\Repository\CategoryRepository;
 use App\Repository\ProductRepository;
@@ -92,6 +95,10 @@ class ProductController extends AbstractController
 
             if($uploadedFile) {
                 $newFilename = $uploaderHelper->uploadProductImage($uploadedFile);
+
+                if(file_exists('images/' . $product->getImage()) && $product->getImage() !== 'default.jpg'){
+                    unlink('images/' . $product->getImage());
+                }
                 $product->setImage($newFilename);
             }
 
@@ -110,10 +117,16 @@ class ProductController extends AbstractController
      * @IsGranted("ROLE_ADMIN", statusCode=404, message="You don't have premmision for this!")
      * @Route("/{id}", name="product_delete", methods={"DELETE"})
      */
-    public function delete(Request $request, Product $product): Response
+    public function delete(Request $request, Product $product, CartProductRepository $cartProductRepository): Response
     {
         if ($this->isCsrfTokenValid('delete'.$product->getId(), $request->request->get('_token'))) {
+            $cartProducts = $cartProductRepository->findBy(['product' => $product->getId()]);
+
             $entityManager = $this->getDoctrine()->getManager();
+            foreach ($cartProducts as $cartProduct)
+            {
+                $entityManager->remove($cartProduct);
+            }
             $entityManager->remove($product);
             $entityManager->flush();
         }
